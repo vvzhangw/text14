@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js基础</title>
+</head>
+<body>
+	<h3>污染城市列表</h3>
+	<ul id="qui-list">	
+	</ul>
+	<h3>空气清新城市列表</h3>
+	<ul id ="my-list">
+		
+	</ul>
+
+<script type="text/javascript">
+	var aqiDate = [
+    ["北京",90],
+    ["上海",50],
+    ["福州",10],
+    ["广州",50],
+    ["成都",90],
+    ["西安",100]
+	];
+    (function ()  {
+		var sortCount = aqiDate.filter(function(item) {
+			return (item[1]>60);
+		});
+		sortCount.sort(function(a,b){
+			return b[1]-a[1];
+		});
+		var aqiList = document.getElementById('qui-list');
+		for(var i=0;i<sortCount.length;i++){
+			aqiList.innerHTML +='<li>第'+(i+1)+'名：'+sortCount[i][0]+'(样例)'+sortCount[i][1]+'</li>';
+		}
+	})();
+	(function (){
+		var mycount = aqiDate.filter(function(item) {
+			return (item[1]<60);
+		});
+		mycount.sort(function(a,b){
+			return a[1]-b[1];
+		});
+		var mylist = document.getElementById('my-list');
+		for(var i=0;i<mycount.length;i++){
+			mylist.innerHTML += '<li>第'+(i+1)+'名：'+ mycount[i][0]+mycount[i][1]+'</li>';
+		}
+	})();
+	
+</script>
+</body>
+</html>
